@@ -40,12 +40,12 @@ function addBillett() {
             email: $("#epost").val(),
         };
         $.post("/addTicket", billett, function (){
-            alert("Bilet eklendi.");
+
         })
 
         //Add the new billett to the list
         $("#alleBilletter").append(`
-        <li class="list-group-item d-flex justify-content-between align-items-center">
+        <li >
             ${billett.filmName} - ${billett.count} tickets - ${billett.forNavn} ${billett.etterNavn}
         </li>
     `);
@@ -104,7 +104,9 @@ function checkFilmSelectionInput() {
     // Get the selected value from the dropdown
     let film = $("#filmNames").val();
 
-    if (film.length < 1) {
+    console.log(film)
+
+    if (film === null || film.length < 1) {
         $("#filmNames").addClass("is-invalid")
         $("#filmNames").removeClass("is-valid")
         isValid = false;
