@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bestilling av kinobilletter</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="formcheck.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <form id="billettForm" novalidate>
+
+        <h1>Bestilling av kinobilletter</h1>
+
+        <div class="row mb-3">
+            <label for="filmNames" class="col-sm-3 col-form-label">Velg film:</label>
+            <div class="col-sm-9">
+                <select name="filmNames" id="filmNames" class="form-select" onblur="checkFilmSelectionInput()">
+                    <option value="" disabled selected>Velg en film...</option>
+                </select>
+                <div class="invalid-feedback">Vennligst velg en film fra listen.</div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="antall" class="col-sm-3 col-form-label">Antall:</label>
+            <div class="col-sm-9">
+                <input type="number" value="1" id="antall" name="antall" min="1" class="form-control" required>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="fornavn" class="col-sm-3 col-form-label">Fornavn:</label>
+            <div class="col-sm-9">
+                <input type="text" id="fornavn" name="fornavn" class="form-control" onblur="checkNameInput()" required>
+                <div class="invalid-feedback">Må skrive noe inn i fornavnet.</div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="etternavn" class="col-sm-3 col-form-label">Etternavn:</label>
+            <div class="col-sm-9">
+                <input type="text" id="etternavn" name="etternavn" class="form-control" onblur="checkSurNameInput()" required>
+                <div class="invalid-feedback">Må skrive noe inn i etternavnet.</div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="telefonnr" class="col-sm-3 col-form-label">Telefonnr:</label>
+            <div class="col-sm-9">
+                <input type="tel" id="telefonnr" name="telefonnr" class="form-control" onblur="checkPhoneInput()" required>
+                <div class="invalid-feedback">Må skrive noe inn i telefonnummeret.</div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="epost" class="col-sm-3 col-form-label">Epost:</label>
+            <div class="col-sm-9">
+                <input type="email" id="epost" name="epost" class="form-control" onblur="checkMailInput()" required>
+                <div class="invalid-feedback">Må skrive noe inn i epost (f.eks. bruker@eksempel.no).</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-9 offset-sm-3">
+                <button type="button" id="kjopBillet" class="btn btn-primary" onclick="addBillett()">Kjøp billett</button>
+                <button type="button" onclick="slettAlleBilletter()" class="btn btn-danger" id="slettBillet">Slett alle billettene</button>
+            </div>
+        </div>
+
+        <h3 class="mt-4">Alle billetter</h3>
+        <div id="alleBilletterContainer" style="max-height: 200px; overflow-y: auto; display: none;">
+            <ol id="alleBilletter" class="list-group list-group-numbered"></ol>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
